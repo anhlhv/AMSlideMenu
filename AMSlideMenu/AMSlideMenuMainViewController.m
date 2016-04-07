@@ -147,6 +147,16 @@ static NSMutableArray *allInstances;
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+- (CGRect)leftMenuOriginalFrame
+{
+    return CGRectMake(-[self leftMenuWidth],0,[self leftMenuWidth],self.view.bounds.size.height);
+}
+
+- (CGRect)leftMenuOpenedFrame
+{
+    return CGRectMake(0 ,0 ,[self leftMenuWidth],self.view.bounds.size.height);
+}
+
 /*----------------------------------------------------*/
 #pragma mark - Static methods -
 /*----------------------------------------------------*/
@@ -181,6 +191,7 @@ static NSMutableArray *allInstances;
 {
     return 250;
 }
+
 
 - (CGFloat)rightMenuWidth
 {
@@ -569,12 +580,16 @@ static NSMutableArray *allInstances;
     
     self.rightMenu.view.hidden = YES;
     self.leftMenu.view.hidden = NO;
+    [self.view bringSubviewToFront:self.leftMenu.view];
     
-    CGRect frame = self.currentActiveNVC.view.frame;
-    frame.origin.x = [self leftMenuWidth];
+    CGRect frame = self.leftMenu.view.frame;
+    frame.origin.x = 0;
+    frame.origin.x = 0;
+    frame.size.width = [self leftMenuWidth];
     
     [UIView animateWithDuration: animated ? self.openAnimationDuration : 0 delay:0.0 options:self.openAnimationCurve animations:^{
-        self.currentActiveNVC.view.frame = frame;
+//        self.currentActiveNVC.view.frame = frame;
+        self.leftMenu.view.frame = [self leftMenuOpenedFrame];
         
         if ([self deepnessForLeftMenu])
         {
@@ -587,7 +602,7 @@ static NSMutableArray *allInstances;
             self.statusBarView.layer.opacity = 0;
         }
         
-        self.darknessView.alpha = [self maxDarknessWhileLeftMenu];
+//        self.darknessView.alpha = [self maxDarknessWhileLeftMenu];
     } completion:^(BOOL finished) {
         [self addGestures];
         [self enableGestures];
@@ -655,7 +670,8 @@ static NSMutableArray *allInstances;
     frame.origin.x = 0;
 
     [UIView animateWithDuration:animated ? self.closeAnimationDuration : 0 delay:0 options:self.closeAnimationCurve animations:^{
-        self.currentActiveNVC.view.frame = frame;
+//        self.currentActiveNVC.view.frame = frame;
+        self.leftMenu.view.frame = [self leftMenuOriginalFrame];
         
         if ([self deepnessForLeftMenu])
         {
