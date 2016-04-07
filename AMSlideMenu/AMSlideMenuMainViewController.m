@@ -869,6 +869,7 @@ static NSMutableArray *allInstances;
     }
     
     [self closeMenu];
+    [self.view sendSubviewToBack:self.currentActiveNVC.view];
     [self.currentActiveNVC.view addGestureRecognizer:self.panGesture];
     
     if ([menu isKindOfClass:[AMSlideMenuLeftTableViewController class]])
