@@ -699,6 +699,7 @@ static NSMutableArray *allInstances;
         self.darknessView.alpha = 0;
     } completion:^(BOOL finished) {
         
+        [self.view sendSubviewToBack:self.leftMenu.view];
         [self.overlayView removeFromSuperview];
         [self desableGestures];
         self.menuState = AMSlideMenuClosed;
@@ -744,7 +745,7 @@ static NSMutableArray *allInstances;
         self.darknessView.alpha = 0;
     } completion:^(BOOL finished) {
         
-        
+        [self.view sendSubviewToBack:self.rightMenu.view];
         [self.overlayView removeFromSuperview];        
         [self desableGestures];
         self.menuState = AMSlideMenuClosed;
