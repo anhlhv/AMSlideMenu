@@ -1023,62 +1023,63 @@ static NSMutableArray *allInstances;
         panStartPosition = [gesture locationInView:panningView];
         panStarted = YES;
     }
-    else if ([gesture state] == UIGestureRecognizerStateEnded || [gesture state] == UIGestureRecognizerStateCancelled)
-    {
-        if (self.menuState != AMSlideMenuClosed)
-        {
-            if (self.menuState == AMSlideMenuLeftOpened)
-            {
-                if (panningView.frame.origin.x < ([self leftMenuWidth] / 2.0f))
-                {
-                    [self closeLeftMenu];
-                }
-                else
-                {
-                    [self openLeftMenu];
-                }
-            }
-            else if (self.menuState == AMSlideMenuRightOpened)
-            {
-                if (self.view.frame.size.width - (panningView.frame.origin.x + panningView.frame.size.width) < ([self rightMenuWidth] / 2.0f))
-                {
-                    [self closeRightMenu];
-                }
-                else
-                {
-                    [self openRightMenu];
-                }
-            }
-        }
-        else
-        {
-            if (panningState == AMSlidePanningStateRight)
-            {
-                if (panningView.frame.origin.x < ([self leftMenuWidth] / 2.0f))
-                {
-                    [self closeLeftMenu];
-                }
-                else
-                {
-                    [self openLeftMenu];
-                }
-
-            }
-            if (panningState == AMSlidePanningStateLeft)
-            {
-                if (self.view.frame.size.width - (panningView.frame.origin.x + panningView.frame.size.width) < ([self rightMenuWidth] / 2.0f))
-                {
-                    [self closeRightMenu];
-                }
-                else
-                {
-                    [self openRightMenu];
-                }
-            }
-        }
-        
-        panningState = AMSlidePanningStateStopped;
-    }
+//    else if ([gesture state] == UIGestureRecognizerStateEnded || [gesture state] == UIGestureRecognizerStateCancelled)
+//    {
+//        if (self.menuState != AMSlideMenuClosed)
+//        {
+//            
+//            if (self.menuState == AMSlideMenuLeftOpened)
+//            {
+//                if (panningView.frame.origin.x < ([self leftMenuWidth] / 2.0f))
+//                {
+//                    [self closeLeftMenu];
+//                }
+//                else
+//                {
+//                    [self openLeftMenu];
+//                }
+//            }
+//            else if (self.menuState == AMSlideMenuRightOpened)
+//            {
+//                if (self.view.frame.size.width - (panningView.frame.origin.x + panningView.frame.size.width) < ([self rightMenuWidth] / 2.0f))
+//                {
+//                    [self closeRightMenu];
+//                }
+//                else
+//                {
+//                    [self openRightMenu];
+//                }
+//            }
+//        }
+//        else
+//        {
+//            if (panningState == AMSlidePanningStateRight)
+//            {
+//                if (panningView.frame.origin.x < ([self leftMenuWidth] / 2.0f))
+//                {
+//                    [self closeLeftMenu];
+//                }
+//                else
+//                {
+//                    [self openLeftMenu];
+//                }
+//
+//            }
+//            if (panningState == AMSlidePanningStateLeft)
+//            {
+//                if (self.view.frame.size.width - (panningView.frame.origin.x + panningView.frame.size.width) < ([self rightMenuWidth] / 2.0f))
+//                {
+//                    [self closeRightMenu];
+//                }
+//                else
+//                {
+//                    [self openRightMenu];
+//                }
+//            }
+//        }
+//        
+//        panningState = AMSlidePanningStateStopped;
+//    }
     else
     {
         if (!CGPointEqualToPoint(panStartPosition, (CGPoint){0,0}))
@@ -1141,7 +1142,7 @@ static NSMutableArray *allInstances;
             }
             else if ((panningView.frame.origin.x + translation.x) < [self leftMenuWidth] && (panningView.frame.origin.x + translation.x) >= 0)
             {
-                [panningView setCenter:CGPointMake([panningView center].x + translation.x, [panningView center].y)];
+//                [panningView setCenter:CGPointMake([panningView center].x + translation.x, [panningView center].y)];
                 
                 [self configure3DTransformForMenu:AMSlideMenuLeft panningView:panningView];
             }
@@ -1155,7 +1156,7 @@ static NSMutableArray *allInstances;
             else if (self.view.frame.size.width - (panningView.frame.origin.x + panningView.frame.size.width + translation.x) < [self rightMenuWidth] &&
                 panningView.frame.origin.x <= 0)
             {
-                [panningView setCenter:CGPointMake([panningView center].x + translation.x, [panningView center].y)];
+//                [panningView setCenter:CGPointMake([panningView center].x + translation.x, [panningView center].y)];
 
                 [self configure3DTransformForMenu:AMSlideMenuRight panningView:panningView];
             }
@@ -1170,7 +1171,7 @@ static NSMutableArray *allInstances;
                 }
                 else if ((panningView.frame.origin.x + translation.x) < [self leftMenuWidth] && (panningView.frame.origin.x + translation.x) > 0)
                 {
-                    [panningView setCenter:CGPointMake([panningView center].x + translation.x, [panningView center].y)];
+//                    [panningView setCenter:CGPointMake([panningView center].x + translation.x, [panningView center].y)];
                     
                     [self configure3DTransformForMenu:AMSlideMenuLeft panningView:panningView];
                 }
@@ -1185,7 +1186,7 @@ static NSMutableArray *allInstances;
                 {
                     if (panningView.frame.origin.x + translation.x <= 0)
                     {
-                        [panningView setCenter:CGPointMake([panningView center].x + translation.x, [panningView center].y)];
+//                        [panningView setCenter:CGPointMake([panningView center].x + translation.x, [panningView center].y)];
                         
                         [self configure3DTransformForMenu:AMSlideMenuRight panningView:panningView];
                     }
