@@ -50,7 +50,7 @@
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
         CGRect bounds = mainVC.view.bounds;
-        leftMenu.view.frame = CGRectMake(0,0,bounds.size.width,bounds.size.height);
+        leftMenu.view.frame = CGRectMake(-[mainVC leftMenuWidth],0, [mainVC leftMenuWidth],bounds.size.height);
     });
 
     [mainVC.view addSubview:leftMenu.view];

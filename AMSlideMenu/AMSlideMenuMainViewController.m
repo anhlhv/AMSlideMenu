@@ -157,6 +157,16 @@ static NSMutableArray *allInstances;
     return CGRectMake(0 ,0 ,[self leftMenuWidth],self.view.bounds.size.height);
 }
 
+- (CGRect)rightMenuOriginalFrame
+{
+    return CGRectMake(self.view.bounds.size.width,0,[self rightMenuWidth],self.view.bounds.size.height);
+}
+
+- (CGRect)rightMenuOpenedFrame
+{
+    return CGRectMake(self.view.bounds.size.width - [self rightMenuWidth],0 , [self rightMenuWidth],self.view.bounds.size.height);
+}
+
 /*----------------------------------------------------*/
 #pragma mark - Static methods -
 /*----------------------------------------------------*/
@@ -631,8 +641,11 @@ static NSMutableArray *allInstances;
     CGRect frame = self.currentActiveNVC.view.frame;
     frame.origin.x = -1 *[self rightMenuWidth];
     
+    [self.view bringSubviewToFront:self.rightMenu.view];
+    
     [UIView animateWithDuration:animated ? self.openAnimationDuration : 0 delay:0.0 options:self.openAnimationCurve animations:^{
-        self.currentActiveNVC.view.frame = frame;
+//        self.currentActiveNVC.view.frame = frame;
+        self.rightMenu.view.frame = [self rightMenuOpenedFrame];
         
         if ([self deepnessForRightMenu])
         {
@@ -714,7 +727,8 @@ static NSMutableArray *allInstances;
     frame.origin.x = 0;
     
     [UIView animateWithDuration:animated ? self.closeAnimationDuration : 0 delay:0 options:self.closeAnimationCurve animations:^{
-        self.currentActiveNVC.view.frame = frame;
+//        self.currentActiveNVC.view.frame = frame;
+        self.rightMenu.view.frame = [self rightMenuOriginalFrame];
 
         if ([self deepnessForRightMenu])
         {
