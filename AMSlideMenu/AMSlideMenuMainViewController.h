@@ -226,7 +226,7 @@ typedef enum {
  * Works ONLY for iOS > 7.0 !
  * @param UIView* that will be shown as background of status bar. Must be 20px height.
  */
-- (void)fixStatusBarWithView:(UIView *)view;
+- (void)fixStatusBarWithStatus:(BOOL)status;
 
 /**
  * Call this method if you want to uunfix status bar with custom view
